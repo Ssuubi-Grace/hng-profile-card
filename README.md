@@ -10,7 +10,8 @@ A responsive, accessible profile card built with semantic HTML, CSS, and vanilla
 - Keyboard accessible navigation
 
 ## Live Demo
-[Your Live URL Here]
+[https://grace-profile-card.netlify.app/]
+
 
 ## Local Setup
 1. Clone this repository
