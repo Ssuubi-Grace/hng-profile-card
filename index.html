@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card - HNG Stage 0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        article[data-testid="test-profile-card"] {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        img[data-testid="test-user-avatar"] {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        h1[data-testid="test-user-name"] {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p[data-testid="test-user-bio"] {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .time-display {
+            background: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        nav[data-testid="test-user-social-links"] {
+            margin: 20px 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-links a:focus {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+        }
+
+        .lists-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        section h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        ul[data-testid="test-user-hobbies"],
+        ul[data-testid="test-user-dislikes"] {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        ul[data-testid="test-user-hobbies"] li,
+        ul[data-testid="test-user-dislikes"] li {
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        ul[data-testid="test-user-hobbies"] li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        ul[data-testid="test-user-dislikes"] li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .profile-header {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .profile-info {
+                text-align: left;
+            }
+
+            .time-display {
+                display: block;
+                text-align: left;
+            }
+
+            .social-links {
+                justify-content: flex-start;
+            }
+
+            .lists-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            h1[data-testid="test-user-name"] {
+                font-size: 1.5rem;
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            img[data-testid="test-user-avatar"] {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article data-testid="test-profile-card">
+        <div class="card-content">
+            <div class="profile-header">
+                <figure>
+                    <img 
+                        src="https://api.dicebear.com/7.x/avataaars/svg?seed=HNG" 
+                        alt="Profile picture of Grace"
+                        data-testid="test-user-avatar"
+                    >
+                </figure>
+                
+                <div class="profile-info">
+                    <header>
+                        <h1 data-testid="test-user-name">Grace Ssuubi</h1>
+                    </header>
+                    
+                    <p data-testid="test-user-bio">
+                        Passionate frontend developer and HNG Internship participant. 
+                        I love creating beautiful, accessible, and user-friendly web experiences. 
+                        Always learning and growing in the world of software development.
+                    </p>
+                    
+                    <div class="time-display">
+                        <strong>Current Time:</strong> <span data-testid="test-user-time" id="currentTime"></span> ms
+                    </div>
+                </div>
+            </div>
+
+            <nav data-testid="test-user-social-links">
+                <ul class="social-links">
+                    <li>
+                        <a href="https://github.com/Ssuubi-Grace" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           data-testid="test-user-social-github">
+                            🔗 GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://x.com/grace_ssuubi" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           data-testid="test-user-social-twitter">
+                            X
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/ssuubi-grace/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           data-testid="test-user-social-linkedin">
+                            LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="lists-container">
+                <section>
+                    <h2>My Hobbies</h2>
+                    <ul data-testid="test-user-hobbies">
+                        <li>Coding and building web applications</li>
+                        <li>Reading tech blogs and documentation</li>
+                        <li>Contributing to community impact projects</li>
+                        <li>Helping others grow & inspiring people</li>
+                        <li>Journaling and reflecting on progress</li>
+                        <li>Listening to music</li>
+                        <li>Photography and visual design</li>
+                        <li>Learning new technologies</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Things I Dislike</h2>
+                    <ul data-testid="test-user-dislikes">
+                        <li>Procrastination</li>
+                        <li>Poor communication or unclear instructions</li>
+                        <li>Distractions during focused work</li>
+                        <li>Unnecessary negativit</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <script>
+        function updateTime() {
+            const timeElement = document.getElementById('currentTime');
+            timeElement.textContent = Date.now();
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
