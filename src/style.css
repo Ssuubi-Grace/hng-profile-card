@@ -1,0 +1,396 @@
+/* GLOBAL RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-color: #333;
+    --subtle-text: #666;
+    --card-bg: white;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligning content to the top */
+    padding-top: 20px;
+    width: 100%; 
+}
+
+/* ---------------------------------------------------- */
+/* ## NAVIGATION BAR (New for Stage 1) */
+.main-header {
+    background: var(--card-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ---------------------------------------------------- */
+/*PROFILE CARD STYLES */
+article[data-testid="test-profile-card"] {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+figure {
+    margin: 0;
+}
+
+img[data-testid="test-user-avatar"] {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    text-align: center;
+    flex: 1;
+}
+
+h1[data-testid="test-user-name"] {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+p[data-testid="test-user-bio"] {
+    font-size: 1rem;
+    color: var(--subtle-text);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.time-display {
+    background: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #555;
+    word-wrap: break-word; 
+}
+
+/* Social Links - COMPLETE */
+nav[data-testid="test-user-social-links"] {
+    margin: 20px 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.social-links a:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-links a:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* Hobbies/Dislikes Lists */
+.lists-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid var(--primary-color);
+}
+
+section h2 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+ul[data-testid="test-user-hobbies"],
+ul[data-testid="test-user-dislikes"] {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ul[data-testid="test-user-hobbies"] li,
+ul[data-testid="test-user-dislikes"] li {
+    padding-left: 25px; /* Space for the indicator */
+    position: relative;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* List item indicators - COMPLETE */
+ul[data-testid="test-user-hobbies"] li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color); 
+    font-weight: bold;
+}
+
+ul[data-testid="test-user-dislikes"] li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: var(--error-color); 
+    font-weight: bold;
+}
+
+
+/* ABOUT ME & CONTACT US STYLES */
+/* ---------------------------------------------------- */
+.about-card, .contact-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    width: 100%;
+    padding: 40px;
+}
+
+.about-card h1 {
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.about-card section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 4px solid var(--secondary-color);
+    background: #f4f4f9;
+}
+
+.about-card section h2 {
+    color: var(--primary-color);
+}
+
+.about-card ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+/* Form Styles */
+.contact-card h1 {
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.error-message {
+    display: block;
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    min-height: 18px; 
+}
+
+.success-message {
+    background: var(--success-color);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contact-card button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.contact-card button[type="submit"]:hover {
+    background: var(--secondary-color);
+}
+
+.contact-card button[type="submit"]:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+    /* Profile Card Layout for Desktop/Tablet */
+    .profile-header {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .profile-info {
+        text-align: left;
+    }
+
+    .time-display {
+        display: block;
+        text-align: left;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
+
+    .lists-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Navigation for Mobile */
+    .main-nav {
+        padding: 0 10px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Profile Card Adjustments for Mobile */
+    h1[data-testid="test-user-name"] {
+        font-size: 1.5rem;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    img[data-testid="test-user-avatar"] {
+        width: 120px;
+        height: 120px;
+    }
+}
